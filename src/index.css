@@ -1,0 +1,32 @@
+/* @import url('https://ik.imagekit.io/cheng/huiwen-mincho/result.css?updatedAt=1710330518062'); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  height: 100%;
+  padding: 1rem;
+  background-color: #2d2d2d;
+  color: #f2f2f2;
+}
+body {
+  height: 100%;
+}
+
+#input {
+  border-radius: 4px;
+}
+
+#result {
+  font-family: 'Huiwen-mincho';
+  font-size: 1.5rem;
+  color: mediumblue;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+@font-face {
+  font-family: 'Huiwen-mincho';
+  src: url('./assets/huiwen-mincho.woff2');
+}
