@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import DownloadButton from '../components/ui/DownloadButton';
 
 export default function Wallpaper() {
   const iPhone13 = {
@@ -144,13 +145,7 @@ export default function Wallpaper() {
             <div className='flex flex-col items-center justify-center gap-4'>
               <canvas ref={canvasRef}></canvas>
 
-              <a
-                download
-                href={downloadLink}
-                className='border-2 px-2 py-1 text-xl '
-              >
-                Download
-              </a>
+              <DownloadButton />
             </div>
           ) : (
             <p className='mt-20 text-center font-serif text-xl tracking-widest text-blue-200'>

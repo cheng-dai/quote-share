@@ -5,7 +5,7 @@ export default function Header() {
   console.log('location', location);
   return (
     <>
-      <header className='mt-8 flex flex-col items-center justify-center gap-4 py-4 '>
+      <header className='mt-6 flex flex-col items-center justify-center gap-4 py-4 '>
         <h1 className='text-center font-mono text-4xl font-semibold'>
           Spread Words
         </h1>

@@ -35,12 +35,13 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <div className='pb-20'>
+      <RouterProvider router={router} />
 
-    {/* <div className='mb-20'>
+      {/* <div className='mb-20'>
       <App />
     </div> */}
-
+    </div>
     <Footer />
   </React.StrictMode>,
 );

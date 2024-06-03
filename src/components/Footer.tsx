@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className='sticky bottom-0  w-full bg-[#2d2d2d] py-4 text-center font-sans text-white/50'>
+    <footer className='fixed bottom-0  w-full bg-[#2d2d2d] py-4 text-center font-sans text-white/50'>
       <p>
         POWERED BY{' '}
         <a
