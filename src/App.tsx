@@ -2,12 +2,11 @@ import { useState, useRef, useEffect } from 'react';
 
 export default function App() {
   const fontsize = 16;
-  const [color, setColor] = useState<string>('midnightblue');
+  const [bgcolor, setBgColor] = useState<string>('darkgray');
 
   const [words, setWords] = useState<string>('');
   const [lines, setLines] = useState<string[]>([]);
   const [fontLoaded, setFontLoaded] = useState<boolean>(false);
-
   const [downloadLink, setDownloadLink] = useState<string>('');
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -60,7 +59,7 @@ export default function App() {
           canvas.height = cssHeight * dpi;
           canvas.width = cssWidth * dpi;
           ctx.scale(dpi, dpi);
-          ctx.fillStyle = color;
+          ctx.fillStyle = bgcolor;
           ctx.fillRect(0, 0, canvas.width, canvas.height);
 
           ctx.fillStyle = '#103947';
@@ -82,7 +81,7 @@ export default function App() {
         }
       }
     }
-  }, [words, color, lines, fontLoaded]);
+  }, [words, bgcolor, lines, fontLoaded]);
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = e.target.value;
     setWords(newText);
@@ -130,10 +129,10 @@ export default function App() {
                   key={c}
                   className={`
         h-8 w-8 rounded-full
-        ${c === color ? 'border-2 border-white' : ''}
+        ${c === bgcolor ? 'border-2 border-white' : ''}
       )`}
                   style={{ backgroundColor: c }}
-                  onClick={() => setColor(c)}
+                  onClick={() => setBgColor(c)}
                 ></button>
               ))}
             </div>
