@@ -12,7 +12,7 @@ export default function App() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const colors = ['midnightblue', 'darkred', 'darkgreen', 'darkgray'];
+  const colors = ['steelblue', 'darkred', 'darkgreen', 'darkgray'];
   useEffect(() => {
     const loadFont = async () => {
       await document.fonts.load(`${fontsize}px Huiwen-mincho`);
@@ -48,7 +48,7 @@ export default function App() {
                 return longest;
               }
             }
-          }, '「ppbook studio」');
+          }, lines[0]);
           console.log('longest', longestLine);
           ctx.font = `${fontsize}px Huiwen-mincho`;
           const cssWidth = ctx.measureText(longestLine).width + 80;
@@ -63,14 +63,18 @@ export default function App() {
           ctx.fillStyle = color;
           ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-          ctx.fillStyle = '#f2f2f2';
+          ctx.fillStyle = '#103947';
           ctx.font = `${fontsize}px Huiwen-mincho`;
           for (let i = 0; i < lines.length; i++) {
-            ctx.fillText(lines[i], 40, 40 + i * fontsize * 2);
+            if (longestLine === '「ppstudio.run」') {
+              ctx.fillText(lines[i], 40, 40 + i * fontsize * 2);
+            } else {
+              ctx.fillText(lines[i], 40, 40 + i * fontsize * 2);
+            }
           }
           ctx.font = '12px Huiwen-mincho';
           ctx.fillText(
-            '「ppbook studio」',
+            '「ppstudio.run」',
             cssWidth / 2 - 40,
             lines.length * fontsize * 2 + 40,
           );
@@ -103,7 +107,7 @@ export default function App() {
   return (
     <div className='mx-auto w-1/3 max-md:w-full'>
       <h2 className='my-4 text-center font-serif text-2xl tracking-widest'>
-        Quote Sharing
+        Share the Quote
       </h2>
       {/* <h1 className='text-center py-2 font-huiwen text-2xl'>分享</h1> */}
 
@@ -141,9 +145,9 @@ export default function App() {
               <a
                 download
                 href={downloadLink}
-                className='border-2 px-2 py-1 text-xl '
+                className='rounded border-2 px-4 py-2 text-xl'
               >
-                Download
+                Download Image
               </a>
             </div>
           ) : (

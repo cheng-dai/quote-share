@@ -1,11 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
+import data from '../helpers/screens.json';
 import DownloadButton from '../components/ui/DownloadButton';
 
 export default function Wallpaper() {
-  const iPhone13 = {
-    width: 1170,
-    height: 2532,
-  };
   const fontsize = 60;
   const footer = '{ ppbook studio }';
   const [color, setColor] = useState<string>('midnightblue');
@@ -13,8 +10,8 @@ export default function Wallpaper() {
   const [words, setWords] = useState<string>('');
   const [lines, setLines] = useState<string[]>([]);
   const [fontLoaded, setFontLoaded] = useState<boolean>(false);
-
   const [downloadLink, setDownloadLink] = useState<string>('');
+
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -27,10 +24,11 @@ export default function Wallpaper() {
 
     loadFont();
   }, []);
+  let canvas = canvasRef.current;
+
   useEffect(() => {
     const dpi = 1;
     console.log('dpi', dpi);
-    const canvas = canvasRef.current;
 
     if (canvas && fontLoaded) {
       const ctx = canvas.getContext('2d');
@@ -61,10 +59,10 @@ export default function Wallpaper() {
           console.log('cssWidth', cssWidth);
           // const cssHeight = 60 + lines.length * fontsize * 2;
 
-          canvas.style.height = `${iPhone13.height / 4}px`;
-          canvas.style.width = `${iPhone13.width / 4}px`;
-          canvas.height = iPhone13.height;
-          canvas.width = iPhone13.width;
+          canvas.style.height = `${data.iPhone13.height / 4}px`;
+          canvas.style.width = `${data.iPhone13.width / 4}px`;
+          canvas.height = data.iPhone13.height;
+          canvas.width = data.iPhone13.width;
           ctx.scale(dpi, dpi);
           ctx.fillStyle = color;
           ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -84,9 +82,9 @@ export default function Wallpaper() {
             (canvas.width - ctx.measureText(footer).width) / 2,
             canvas.height - fontsize / 1.5,
           );
-          setDownloadLink(canvas.toDataURL('image/png', 1));
         }
       }
+      setDownloadLink(canvas.toDataURL('image/png', 1));
     }
   }, [words, color, lines, fontLoaded]);
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -95,25 +93,8 @@ export default function Wallpaper() {
     setLines(newText.split('\n'));
   };
 
-  // const drawCanvas = () => {
-  //   const canvas = canvasRef.current;
-  //   if (canvas) {
-  //     const ctx = canvas.getContext('2d');
-  //     if (ctx) {
-  //       ctx.clearRect(0, 0, canvas.width, canvas.height);
-  //       ctx.fillStyle = 'white';
-  //       ctx.fillRect(0, 0, canvas.width, canvas.height);
-  //       ctx.font = '32px Huiwen-mincho';
-  //       ctx.fillStyle = 'midnightblue';
-  //       ctx.fillText(words, 10, 50);
-  //     }
-  //   }
-  // };
-
   return (
     <div className='mx-auto w-1/3 max-md:w-full'>
-      {/* <h1 className='text-center py-2 font-huiwen text-2xl'>分享</h1> */}
-
       <textarea
         ref={inputRef}
         id='input'
@@ -144,8 +125,7 @@ export default function Wallpaper() {
           {fontLoaded ? (
             <div className='flex flex-col items-center justify-center gap-4'>
               <canvas ref={canvasRef}></canvas>
-
-              <DownloadButton />
+              {canvas && <DownloadButton downloadLink={downloadLink} />}
             </div>
           ) : (
             <p className='mt-20 text-center font-serif text-xl tracking-widest text-blue-200'>

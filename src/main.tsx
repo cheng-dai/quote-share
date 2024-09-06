@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, BrowserRouter as Router } from 'react-router-dom';
 
 import Header from './components/Header.tsx';
 import ErrorPage from './error-page.tsx';
 import './index.css';
 import Footer from './components/Footer.tsx';
-import Root from './routes/root.tsx';
+import Quote from './routes/quote.tsx';
 import Wallpaper from './routes/wallpaper.tsx';
+import App from './App.tsx';
 
 // const HeaderLayout = () => (
 //   <>
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Root />,
+        element: <Quote />,
         errorElement: <ErrorPage />,
       },
       {
@@ -35,13 +36,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <div className='pb-20'>
-      <RouterProvider router={router} />
+    <Router>
+      <div className='pb-20'>
+        <App />
+      </div>
 
-      {/* <div className='mb-20'>
-      <App />
-    </div> */}
-    </div>
-    <Footer />
+      <Footer />
+    </Router>
   </React.StrictMode>,
 );

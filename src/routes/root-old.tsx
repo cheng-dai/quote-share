@@ -8,7 +8,7 @@ export default function Root() {
   const [fontLoaded, setFontLoaded] = useState<boolean>(false);
 
   const [downloadLink, setDownloadLink] = useState<string>('');
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const colors = ['midnightblue', 'darkred', 'darkgreen', 'darkgray'];
@@ -104,7 +104,6 @@ export default function Root() {
       {/* <h1 className='text-center py-2 font-huiwen text-2xl'>分享</h1> */}
 
       <textarea
-        ref={inputRef}
         id='input'
         className='aspect-[2/1] w-full bg-[#f2f2f2]/20 p-4 text-white'
         value={words}
