@@ -142,7 +142,7 @@ export default function App() {
               <canvas ref={canvasRef}></canvas>
 
               <a
-                download
+                download='spread_word'
                 href={downloadLink}
                 className='rounded border-2 px-4 py-2 text-xl'
               >
