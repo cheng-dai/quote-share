@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import data from '../helpers/screens.json';
+import data from '../utils/screens.json';
 import DownloadButton from '../components/ui/DownloadButton';
 
 export default function Wallpaper() {
