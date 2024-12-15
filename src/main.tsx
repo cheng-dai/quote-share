@@ -2,12 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-// import Header from './components/Header.tsx';
-// import ErrorPage from './error-page.tsx';
 import './index.css';
 import Footer from './components/Footer.tsx';
-// import Quote from './routes/quote.tsx';
-// import Wallpaper from './routes/wallpaper.tsx';
 import App from './App.tsx';
 
 // const HeaderLayout = () => (

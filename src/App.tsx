@@ -34,19 +34,9 @@ export default function App() {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
         } else {
           const longestLine = lines.reduce((longest, current) => {
-            if (
-              /[\u4e00-\u9fff]/.test(current) &&
-              !/[\u4e00-\u9fff]/.test(longest) &&
-              Math.abs(current.length - longest.length) < 10
-            ) {
-              return current;
-            } else {
-              if (current.length > longest.length) {
-                return current;
-              } else {
-                return longest;
-              }
-            }
+            const currentWidth = ctx.measureText(current).width;
+            const longestWidth = ctx.measureText(longest).width;
+            return currentWidth > longestWidth ? current : longest;
           }, lines[0]);
           console.log('longest', longestLine);
           ctx.font = `${fontsize}px Huiwen-mincho`;
